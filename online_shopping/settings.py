@@ -69,7 +69,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'online_shopping.wsgi.application'
-UTH_USER_MODEL = 'abay.User'
+AUTH_USER_MODEL = 'abay.User'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
