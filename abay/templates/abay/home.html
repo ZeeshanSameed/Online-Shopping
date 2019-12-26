@@ -11,10 +11,10 @@
     <title>Abay - A Modern Shopping Website</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/modern-business.css" rel="stylesheet">
+    <link href="/css/modern-business.css" rel="stylesheet">
 
 </head>
 
@@ -32,6 +32,9 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
+						<a class="nav-link" href="#!">Hi! {{request.user}}</a>
+					</li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#!">About</a>
                     </li>
                     <li class="nav-item">
@@ -39,6 +42,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#!">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}?next=/abay">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -261,6 +267,7 @@
             <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
         </div>
         <!-- /.container -->
+        <button class="btn btn-primary"> bootstrap </button>
     </footer>
 
     <!-- Bootstrap core JavaScript -->

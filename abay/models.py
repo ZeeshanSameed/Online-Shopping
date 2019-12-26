@@ -9,11 +9,11 @@ class User(AbstractUser):
     is_customer = models.BooleanField('customer status', default=False)
 
 
-# class StoreAdmin(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-#     phone_number = models.IntegerField()
-#     #avatar = models.ImageField()
-#     location = models.CharField(max_length=50, blank=True)
+class StoreAdmin(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    phone_number = models.CharField(max_length=200)
+    #avatar = models.ImageField()
+    # location = models.CharField(max_length=50, blank=True)
 
 
 # '''@receiver(post_save, sender=User)
@@ -28,11 +28,11 @@ class User(AbstractUser):
 # '''
 
 
-# class Customer(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     phone_number = models.IntegerField()
-#     #avatar = models.ImageField()
-#     location = models.CharField(max_length=50, blank=True)
+class Customer(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone_number = models.CharField(max_length=200)
+    #avatar = models.ImageField()
+    # location = models.CharField(max_length=50, blank=True)
 
 
 # class Address(models.Model):
@@ -46,12 +46,12 @@ class User(AbstractUser):
 #         StoreAdmin, null=True, on_delete=models.CASCADE)
 
 
-# class Product(models.Model):
-#     name = models.CharField(max_length=20)
-#     price = models.IntegerField()
-#     saleprice = models.IntegerField()
-#     storeadmin = models.ForeignKey(
-#         StoreAdmin, null=True, on_delete=models.CASCADE)
+class Product(models.Model):
+    name = models.CharField(max_length=20)
+    price = models.IntegerField()
+    saleprice = models.IntegerField()
+    storeadmin = models.ForeignKey(
+        StoreAdmin, null=True, on_delete=models.CASCADE)
 
 
 # class Order(models.Model):
