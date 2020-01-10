@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Abay</title>
+    
     <link rel="icon" href="/static/img/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Clicker+Script" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -27,15 +28,15 @@
                 <div class="row">
                     <div class="col-6">
                         <h1 class="logo">
-                            <a href="/">
+                            <a href="#!">
                                 Abay
-
                             </a>
                         </h1>
+                        <h6 class="logo">Online Shopping Website</h6>
                     </div>
                     <div class="col-6 text-right">
 
-                        <a href="login" class="btn btn-light" role="button">Log in</a>
+                        <a class="btn btn-light" role="button" href="{% url 'login' %}?next=/abay/home"></a>Log in</a>
                         
                     </div>
                 </div>
@@ -52,10 +53,10 @@
                     </div>
                 </div>
                 <footer>
-                    <a href="https://www.instagram.com"> Follow me on Instagram </a>
+                    <a href="https://www.instagram.com"> Follow on Instagram </a>
                     /
                     <a
-                        href="https://www.facebook.com"> Follow me on Facebook
+                        href="https://www.facebook.com"> Follow on Facebook
                         </a>
                     /
                     <a href="https://github.com/ZeeshanSameed/Online-Shopping/commits/master">GitHub repository</a>

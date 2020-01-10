@@ -1,0 +1,6 @@
+<form method="POST">
+    {% csrf_token %}
+    Are you sure you want to delete your product: {{ object.name }}?
+    <button type="submit" class="btn btn-danger">YES</button>
+    <button href="javascript:javascript:history.go(-1)">Cancel</button>
+</form>

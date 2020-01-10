@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,10 +13,10 @@
     <title>Shop Homepage - Start Bootstrap Template</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static '/css/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/shop-homepage.css" rel="stylesheet">
+    <link href="{% static '/css/modern-business.css' %}" rel="stylesheet">
 
 </head>
 
@@ -23,7 +25,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">Start Abay</a>
+            <a class="navbar-brand" href="#">Abay</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -100,27 +102,44 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-
+                {% if items %}
                 <div class="row">
-
+                    <!-- body -->
+                    {% for item in items %}
                     <div class="col-lg-4 col-md-6 mb-4">
+
                         <div class="card h-100">
                             <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <a href="#">Item One</a>
+                                    <a href="{% url 'detail' item.id %}"> Name: {{ item.name }} </a>
                                 </h4>
-                                <h5>Rs: 2000</h5>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet
-                                    numquam aspernatur!</p>
+                                <h5>Price: {{ item.price }}</h5>
+                                <p class="card-text">Description:
+                                    {{ item.description|safe|truncatewords:"10"|linebreaks }}</p>
+                                <a class="btn btn-secondary" href="{{ url_for_full_content }}">read more</a>
+
                             </div>
                             <div class="card-footer">
                                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="col-lg-4 col-md-6 mb-4">
+                        </div>
+
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    {% else %}
+    <h3>No Products are availabale</h3>
+    {% endif %}
+    <a class="btn btn-primary" href="{% url 'addproduct' %}"> Add Product</a>
+
+    <!-- <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
                             <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
                             <div class="card-body">
@@ -204,30 +223,29 @@
                             </div>
                         </div>
                     </div>
-
+                    <a class="btn btn-primary" href="{% url 'addproduct' %}"> Add Product</a>
                 </div>
-                <!-- /.row -->
+                 /.row -->
+    <!-- </div> -->
+    <!-- /.col-lg-9 -->
 
-            </div>
-            <!-- /.col-lg-9 -->
+    <!-- </div> -->
+    <!-- /.row -->
 
-        </div>
-        <!-- /.row -->
+    <!-- </div> -->
+    <!-- .container -->
 
-    </div>
-    <!-- /.container -->
-    <a class="btn btn-primary" href="#"> Add Item</a>
     <!-- Footer -->
     <footer class="py-5 bg-dark">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
         </div>
         <!-- /.container -->
     </footer>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static '/js/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static '/js/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
 
 </body>
 

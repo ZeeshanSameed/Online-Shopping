@@ -13,5 +13,11 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('home/', views.HomeView.as_view(), name='home'),
-    path('storeadmin/', views.StoreView.as_view(), name='storeadmin')
+    path('<int:pk>', views.ProductDetailView.as_view(), name='detail'),
+    path('delete/<int:pk>/', views.deleteProduct, name='deleteProduct'),
+    path('edit/<int:pk>/', views.edit, name='edit'),
+    path('storeadmin/', views.StoreView.as_view(), name='storeadmin'),
+    path('add-product/', views.AddProduct, name='addproduct'),
+    path('cart-detail/<int:pk>', views.AddToCartView, name='cartdetail'),
+    path('cart',views.cart_view,name='cart'),
 ]

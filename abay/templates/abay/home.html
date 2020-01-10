@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,11 +13,13 @@
     <title>Abay - A Modern Shopping Website</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/vendor/bootstrap/css/bootstrap.min.css' %}">
 
     <!-- Custom styles for this template -->
-    <link href="/css/modern-business.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/modern-business.css' %}">
 
+    <!-- linkinging order detail html -->
+    <!-- <link rel="stylesheet" type="text/css" href="{% static '/css/modern-business.css' %}"> -->
 </head>
 
 <body>
@@ -23,7 +27,7 @@
     <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="home.html">Abay</a>
+            <a class="navbar-brand" href="#!">Abay</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -32,8 +36,8 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-						<a class="nav-link" href="#!">Hi! {{request.user}}</a>
-					</li>
+                        <a class="nav-link" href="#!">Hi! {{request.user}}</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#!">About</a>
                     </li>
@@ -46,6 +50,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'logout' %}?next=/abay">Logout</a>
                     </li>
+                    <!-- Trigger/Open The Order -->
                 </ul>
             </div>
         </div>
@@ -60,23 +65,23 @@
             </ol>
             <div class="carousel-inner" role="listbox">
                 <!-- Slide One - Set the background image for this slide in the line below -->
-                <div class="carousel-item active" style="background-image: url('http://placehold.it/1900x1080')">
+                <div class="carousel-item active" style="background-image: url('https://mominaislam.com/wp-content/uploads/2019/01/Winter-sale-30-Off-1050x525.jpg')">
                     <div class="carousel-caption d-none d-md-block">
-                        <h3>First product</h3>
+                        <!-- <h3>Winter product</h3> -->
                         <p>This is a description for the first product.</p>
                     </div>
                 </div>
                 <!-- Slide Two - Set the background image for this slide in the line below -->
-                <div class="carousel-item" style="background-image: url('http://placehold.it/1900x1080')">
+                <div class="carousel-item" style="background-image: url('https://image.shutterstock.com/image-vector/brush-sale-banner-vector-260nw-1090866878.jpg')">
                     <div class="carousel-caption d-none d-md-block">
-                        <h3>Second product</h3>
+                        <!-- <h3>Sale product</h3> -->
                         <p>This is a description for the second product.</p>
                     </div>
                 </div>
                 <!-- Slide Three - Set the background image for this slide in the line below -->
-                <div class="carousel-item" style="background-image: url('http://placehold.it/1900x1080')">
+                <div class="carousel-item" style="background-image: url('https://scstylecaster.files.wordpress.com/2019/10/zara-black-friday-.gif')">
                     <div class="carousel-caption d-none d-md-block">
-                        <h3>Third product</h3>
+                        <!-- <h3>Third product</h3> -->
                         <p>This is a description for the third product.</p>
                     </div>
                 </div>
@@ -93,10 +98,12 @@
     </header>
 
     <!-- Page Content -->
-    <div class="container">
+    <div class="container" style="background-image: url('')">
 
         <h1 class="my-4">Welcome to Abay</h1>
+        <!-- Trending Products -->
         <h3 class="my-4">Trending Products</h3>
+        <a class="btn btn-secondary" href="#" id="myBtn">Cart</a>
         <!-- Marketing Icons Section -->
         <div class="row">
             <div class="col-lg-4 mb-4">
@@ -107,7 +114,7 @@
                             necessitatibus neque.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="btn btn-primary">Buy</a>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
                     </div>
                 </div>
             </div>
@@ -120,7 +127,7 @@
                             exercitationem ut consequuntur, sed eveniet, magni nostrum sint fuga.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="btn btn-primary">Buy</a>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
                     </div>
                 </div>
             </div>
@@ -132,7 +139,7 @@
                             necessitatibus neque.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="btn btn-primary">Buy</a>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
                     </div>
                 </div>
             </div>
@@ -141,22 +148,36 @@
 
         <!-- Portfolio Section -->
         <h2>Products:</h2>
-
+        {% if items %}
         <div class="row">
+            {% for item in items %}
             <div class="col-lg-4 col-sm-6 portfolio-item">
+                
                 <div class="card h-100">
                     <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="#">Product One</a>
+                            <a href="#">Name: {{ item.name }}</a>
                         </h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam
-                            aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt,
-                            dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
+                        <p class="card-text">Description :{{ item.description|safe|truncatewords:"10"|linebreaks }}</p>
+                        <a href="{{ url_for_full_content }}">read more</a>
+                        
+                        <h5>Price: {{ item.price }}</h5>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'cartdetail' item.pk %}" class="btn btn-primary">Add to Cart</a>
                     </div>
                 </div>
+                
+
             </div>
-            <div class="col-lg-4 col-sm-6 portfolio-item">
+            {% endfor %}
+        </div>
+    </div>
+    {% else %}
+    <h3>No Products are availabale</h3>
+    {% endif %}
+    <!-- <div class="col-lg-4 col-sm-6 portfolio-item">
                 <div class="card h-100">
                     <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
                     <div class="card-body">
@@ -165,6 +186,9 @@
                         </h4>
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra
                             euismod odio, gravida pellentesque urna varius vitae.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
                     </div>
                 </div>
             </div>
@@ -179,6 +203,9 @@
                             error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere
                             atque iure perspiciatis mollitia recusandae vero vel quam!</p>
                     </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6 portfolio-item">
@@ -191,6 +218,9 @@
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra
                             euismod odio, gravida pellentesque urna varius vitae.</p>
                     </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6 portfolio-item">
@@ -202,6 +232,9 @@
                         </h4>
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra
                             euismod odio, gravida pellentesque urna varius vitae.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
                     </div>
                 </div>
             </div>
@@ -216,47 +249,51 @@
                             nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in
                             voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
                     </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <!-- /.row -->
+            </div> -->
 
-        <!-- Features Section -->
-        <div class="row">
-            <div class="col-lg-6">
-                <h2>Our main Features</h2>
-                <p>The Modern Abay Website includes:</p>
-                <ul>
-                    <li>
-                        <strong>Easy access</strong>
-                    </li>
-                    <li>Good Quality</li>
-                    <li>Reliability</li>
-                    <li>Resolves your quiries</li>
-                    <li>Respect our Customers because you are our top priority</li>
-                </ul>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id
-                    reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia
-                    dolorum ducimus unde.</p>
-            </div>
-            <div class="col-lg-6">
-                <img class="img-fluid rounded" src="http://placehold.it/700x450" alt="">
-            </div>
-        </div>
-        <!-- /.row -->
 
-        <hr>
+    <!-- /.row -->
 
-        <!-- Call to Action Section -->
-        <div class="row mb-4">
-            <div class="col-md-8">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, expedita, saepe, vero rerum
-                    deleniti beatae veniam harum neque nemo praesentium cum alias asperiores commodi.</p>
-            </div>
-            <div class="col-md-4">
-                <a class="btn btn-lg btn-secondary btn-block" href="#">Call to Support system</a>
-            </div>
+    <!-- Features Section -->
+    <div class="row">
+        <div class="col-lg-6">
+            <h2>Our main Features</h2>
+            <p>The Modern Abay Website includes:</p>
+            <ul>
+                <li>
+                    <strong>Easy access</strong>
+                </li>
+                <li>Good Quality</li>
+                <li>Reliability</li>
+                <li>Resolves your quiries</li>
+                <li>Respect our Customers because you are our top priority</li>
+            </ul>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id
+                reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia
+                dolorum ducimus unde.</p>
         </div>
+        <div class="col-lg-6">
+            <img class="img-fluid rounded" src="https://images.squarespace-cdn.com/content/55f7ee72e4b0698a5983b296/1466589358176-082SS949ZCO3Q5AIA7GI/ABAY_Cover_web_logo.png?content-type=image%2Fpng" alt="">
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <hr>
+
+    <!-- Call to Action Section -->
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, expedita, saepe, vero rerum
+                deleniti beatae veniam harum neque nemo praesentium cum alias asperiores commodi.</p>
+        </div>
+        <div class="col-md-4">
+            <a class="btn btn-lg btn-secondary btn-block" href="#">Call to Support system</a>
+        </div>
+    </div>
 
     </div>
     <!-- /.container -->
@@ -264,16 +301,14 @@
     <!-- Footer -->
     <footer class="py-5 bg-dark">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
         </div>
         <!-- /.container -->
-        <button class="btn btn-primary"> bootstrap </button>
     </footer>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+    <script src="{% static '/js/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static '/js/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
 </body>
 
 </html>
