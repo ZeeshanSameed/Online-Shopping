@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.contrib.auth import login, authenticate
 from django.shortcuts import redirect, get_object_or_404
 from django.views.generic import CreateView
-from .models import User, Product, Order, Cart, ProductInCart
-from .forms import CustomerSignupForm, StoreAdminSignUpForm, Add_Product #Add_Order  # Add_Address
+from abay.models import User, Product, Order, Cart, ProductInCart
+from abay.forms import CustomerSignupForm, StoreAdminSignUpForm, Add_Product #Add_Order  # Add_Address
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 # # Create your views here.
